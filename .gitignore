@@ -3,3 +3,5 @@ yarn.lock
 .DS_Store
 tags
 .tern-port
+*.swp
+*.swo
