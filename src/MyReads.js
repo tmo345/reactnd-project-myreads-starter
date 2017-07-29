@@ -13,6 +13,9 @@ class MyReads extends Component {
           <Bookshelf />
           <Bookshelf />
         </div>
+        <div className="open-search">
+          <a href="/search">Add a book</a>
+        </div>
       </div>
     )
   }
