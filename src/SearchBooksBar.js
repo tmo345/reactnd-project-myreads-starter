@@ -4,7 +4,10 @@ class SearchBooksBar extends Component {
   render() {
     return (
       <div className="search-books-bar">
-        <input type="text" />
+        <a className="close-search">Close</a>
+        <div className="search-books-input-wrapper">
+          <input type="text" placeholder="Search by title or author" />
+        </div>
       </div>
     )
   }
