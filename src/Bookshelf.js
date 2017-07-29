@@ -5,8 +5,8 @@ class Bookshelf extends Component {
   render() {
     return (
       <div className="bookshelf">
-        <h2>Bookshelf</h2>
-        <ol>
+        <h2 className="bookshelf-title">Bookshelf</h2>
+        <ol className="books-grid">
           <Book />
           <Book />
         </ol>
