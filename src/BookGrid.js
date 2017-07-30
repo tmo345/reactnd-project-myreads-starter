@@ -5,11 +5,12 @@ class BookGrid extends Component {
   render() {
     return (
       <ol className="books-grid">
-        <Book />
-        <Book />
+        {this.props.books.map((book) => {
+          return <Book key={book.id} book={book}/>
+        })}
       </ol>
-    );
-  }
+      );
+}
 }
 
 export default BookGrid;
