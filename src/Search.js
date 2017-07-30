@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import SearchBooksBar from './SearchBooksBar.js'
-import SearchBooksResults from './SearchBooksBar.js';
+import SearchBooksResults from './SearchBooksResults.js';
 
 class Search extends Component {
   render() {
