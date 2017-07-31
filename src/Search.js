@@ -3,6 +3,11 @@ import SearchBooksBar from './SearchBooksBar.js'
 import SearchBooksResults from './SearchBooksResults.js';
 
 class Search extends Component {
+  state = {
+    query: '',
+    searchResults: []
+  }
+
   render() {
     return (
       <div className="search-books">
