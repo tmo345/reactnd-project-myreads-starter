@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import SearchBooksBar from './SearchBooksBar.js'
-import SearchBooksResults from './SearchBooksResults.js';
+import Bookshelf from './Bookshelf.js';
 
 class Search extends Component {
   state = {
@@ -12,7 +12,7 @@ class Search extends Component {
     return (
       <div className="search-books">
         <SearchBooksBar />
-        <SearchBooksResults />
+        <Bookshelf shelves={this.props.shelves} books={this.state.searchResults}/>
       </div>
     )
   }
