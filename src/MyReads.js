@@ -1,7 +1,14 @@
 import React, { Component } from 'react'
 import Bookshelf from './Bookshelf.js'
+import camelCase from 'lodash/camelCase';
 
 class MyReads extends Component {
+  shelves = [
+    'Currently Reading',
+    'Want to Read',
+    'Read'
+  ];
+
   sortBooks(shelf) {
     return this.props.books.filter((book) => {
       return book.shelf === shelf;
@@ -15,9 +22,19 @@ class MyReads extends Component {
           <h1>My Reads</h1>
         </div>
         <div className="list-books-content">
-          <Bookshelf title="Currently Reading" books={this.sortBooks('currentlyReading')}/>
-          <Bookshelf title="Want to Read" books={this.sortBooks('wantToRead')}/>
-          <Bookshelf title="Read" books={this.sortBooks('read')}/>
+          { this.shelves.map((shelf) => {
+            return (
+              <div key={shelf} className="bookshelf">
+                <h2 className="bookshelf-title">{shelf}</h2>
+                <Bookshelf
+                  shelves={ this.shelves }
+                  books={ this.sortBooks(camelCase(shelf)) }
+                  shelfChangeHandler={ this.props.shelfChangeHandler }
+                />
+              </div>
+            )
+          })}
+
         </div>
         <div className="open-search">
           <a href="/search">Add a book</a>

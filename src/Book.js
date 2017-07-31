@@ -1,18 +1,39 @@
 import React, { Component } from 'react'
-import BookshelfChanger from './BookshelfChanger.js';
+import camelCase from 'lodash/camelCase';
 
 class Book extends Component {
+
+  handleShelfSelection = (e) => {
+    this.props.shelfChangeHandler(this.props.book, e.target.value)
+  }
+
   render() {
-    let bookCover = this.props.book.imageLinks.thumbnail;
+    const book = this.props.book;
     return (
       <li>
         <div className="book">
+
           <div className="book-top">
-            <div className="book-cover" style={{ width: 128, height: 193, backgroundImage: `url(${bookCover})` }}></div>
-            <BookshelfChanger shelf={this.props.book.shelf}/>
+
+            <div className="book-cover" style={{ width: 128, height: 193, backgroundImage: `url(${book.imageLinks.thumbnail})` }}></div>
+
+            <div className="book-shelf-changer">
+              <select value={ book.shelf } onChange={ this.handleShelfSelection }>
+                <option value="none" disabled>Move to...</option>
+                { this.props.shelves.map((shelf) => {
+                  return (
+                    <option key={ shelf } value={ camelCase(shelf) }>{ shelf }</option>
+                  );
+                }) }
+                <option value="none">None</option>
+              </select>
+            </div>
+
           </div>
-          <div className='book-title'>{this.props.book.title}</div>
-          <div className="book-authors">{this.props.book.authors.join(', ')}</div>
+
+          <div className='book-title'>{ book.title }</div>
+          <div className="book-authors">{ book.authors.join(', ') }</div>
+
         </div>
       </li>
       )
