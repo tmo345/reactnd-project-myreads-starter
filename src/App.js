@@ -10,6 +10,12 @@ class BooksApp extends React.Component {
     books: []
   }
 
+  shelves = [
+    'Currently Reading',
+    'Want to Read',
+    'Read'
+  ];
+
   componentDidMount = () => {
     BooksAPI.getAll().then((books) => {
       this.setState({ books });
@@ -52,10 +58,10 @@ class BooksApp extends React.Component {
     return (
       <div className="app">
         <Route exact path="/" render={() => (
-          <MyReads books={this.state.books} shelfChangeHandler={this.shelfChangeHandler}/>
+          <MyReads shelves={this.shelves} books={this.state.books} shelfChangeHandler={this.shelfChangeHandler}/>
         )}/>
         <Route path="/search" render={() => (
-          <Search />
+          <Search shelves={this.shelves}/>
         )}/>
       </div>
     )

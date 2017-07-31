@@ -3,12 +3,6 @@ import Bookshelf from './Bookshelf.js'
 import camelCase from 'lodash/camelCase';
 
 class MyReads extends Component {
-  shelves = [
-    'Currently Reading',
-    'Want to Read',
-    'Read'
-  ];
-
   sortBooks(shelf) {
     return this.props.books.filter((book) => {
       return book.shelf === shelf;
@@ -27,7 +21,7 @@ class MyReads extends Component {
               <div key={shelf} className="bookshelf">
                 <h2 className="bookshelf-title">{shelf}</h2>
                 <Bookshelf
-                  shelves={ this.shelves }
+                  shelves={ this.props.shelves }
                   books={ this.sortBooks(camelCase(shelf)) }
                   shelfChangeHandler={ this.props.shelfChangeHandler }
                 />
