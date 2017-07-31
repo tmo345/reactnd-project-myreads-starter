@@ -16,10 +16,36 @@ class BooksApp extends React.Component {
     });
   }
 
-  shelfChangeHandler = (book, shelf) => {
-    BooksAPI.update(book, shelf).then(BooksAPI.getAll().then((books) => {
-      this.setState({ books });
-    }));
+  shelfChangeHandler = (bookToChange, shelf) => {
+    BooksAPI.update(bookToChange, shelf)
+      .then(this.updateBookshelf(bookToChange, shelf));
+    }
+
+  /**
+   * @description Map over current state.books. When book.id equals the
+   * bookToChange.id, use object.assign to create a new book object
+   * with the updated shelf. Set the state to the array of books
+   * returned from the map. State now contains the book with the update
+   * shelf and the book will be rerendered in the appropriate shelf.
+   *
+   * Modeled after example on page 102 of Fullstack React, Fullstack.io
+   * Accomazzo et al.
+   *
+   * @param {book}   bookToChange
+   * @param {string} shelf
+   * @return undefined
+   */
+  updateBookshelf = (bookToChange, shelf) => {
+    this.setState({
+      books: this.state.books.map((book) => {
+        if (bookToChange.id === book.id) {
+          return Object.assign({}, book, {
+           shelf: shelf
+        }) } else {
+          return book;
+        }
+      })
+    })
   }
 
   render() {
