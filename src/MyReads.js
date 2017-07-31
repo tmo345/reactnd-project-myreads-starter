@@ -16,7 +16,7 @@ class MyReads extends Component {
           <h1>My Reads</h1>
         </div>
         <div className="list-books-content">
-          { this.shelves.map((shelf) => {
+          { this.props.shelves.map((shelf) => {
             return (
               <div key={shelf} className="bookshelf">
                 <h2 className="bookshelf-title">{shelf}</h2>
