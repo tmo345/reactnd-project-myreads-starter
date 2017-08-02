@@ -5,3 +5,6 @@ tags
 .tern-port
 *.swp
 *.swo
+.idea
+.vscode
+build
