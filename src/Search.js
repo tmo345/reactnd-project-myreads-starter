@@ -6,7 +6,8 @@ import PropTypes from 'prop-types';
 
 class Search extends Component {
   static propTypes = {
-    shelves: PropTypes.array.isRequired
+    shelves: PropTypes.array.isRequired,
+    myBooks: PropTypes.array.isRequired
   }
 
   state = {
@@ -26,9 +27,11 @@ class Search extends Component {
   handleSearch = (newQuery) => {
     if (newQuery.trim() !== '') {
       BooksAPI.search(newQuery, 20)
-        .then((books) => {
+        .then((results) => {
           this.updateQuery(newQuery.trim());
-          this.updateSearchResults(books);
+
+          let syncedResults = this.syncResultsWithBooks(results);
+          this.updateSearchResults(syncedResults);
         }, () => {
           this.updateQuery('');
           this.updateSearchResults([])
@@ -39,6 +42,31 @@ class Search extends Component {
     }
   }
 
+  syncResultsWithBooks = (results) => {
+    let syncedResults = results.map((result) => {
+      let matchingBook = this.props.myBooks.find((myBook) => {
+        return result.id === myBook.id;
+      });
+      if (matchingBook) {
+        return Object.assign({}, result, { shelf: matchingBook.shelf })
+      } else {
+        return result;
+      }
+    });
+    return syncedResults;
+  }
+
+  changeSearchResultShelf = (resultBookToChange, shelf) => {
+    this.setState({
+      searchResults: this.state.searchResults.map((searchResult) => {
+        if (searchResult.id === resultBookToChange.id) {
+          return Object.assign({}, searchResult, { shelf });
+        } else {
+          return searchResult;
+        }
+      })
+    })
+  }
 
   render() {
     return (
@@ -51,7 +79,7 @@ class Search extends Component {
             shelves={this.props.shelves}
             searchResults={this.state.searchResults}
             shelfChangeHandler={this.props.shelfChangeHandler}
-            syncResultWithBookShelf={this.syncResultWithBookShelf}
+            changeSearchResultShelf={this.changeSearchResultShelf}
           />
 
         }
