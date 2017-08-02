@@ -5,14 +5,14 @@ import PropTypes from 'prop-types';
 
 class MyReads extends Component {
   static propTypes = {
-    books: PropTypes.array.isRequired,
+    myBooks: PropTypes.array.isRequired,
     shelfChangeHandler: PropTypes.func.isRequired,
     shelves: PropTypes.array.isRequired
   }
 
   sortBooks(shelf) {
-    return this.props.books.filter((book) => {
-      return book.shelf === shelf;
+    return this.props.myBooks.filter((myBook) => {
+      return myBook.shelf === shelf;
     })
   }
 
@@ -29,7 +29,7 @@ class MyReads extends Component {
                 <h2 className="bookshelf-title">{shelf}</h2>
                 <Bookshelf
                   shelves={ this.props.shelves }
-                  books={ this.sortBooks(camelCase(shelf)) }
+                  myBooks={ this.sortBooks(camelCase(shelf)) }
                   shelfChangeHandler={ this.props.shelfChangeHandler }
                 />
               </div>

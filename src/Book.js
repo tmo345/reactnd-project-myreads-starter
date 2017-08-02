@@ -8,7 +8,7 @@ class Book extends Component {
   }
 
   static propTypes = {
-    book: PropTypes.object,
+    myBook: PropTypes.object,
     resultBook: PropTypes.object,
     shelfChangeHandler: PropTypes.func.isRequired,
     shelves: PropTypes.array.isRequired,
@@ -45,7 +45,7 @@ class Book extends Component {
     if (this.props.resultBook) {
       book = this.props.resultBook;
     } else {
-      book = this.props.book;
+      book = this.props.myBook;
     }
 
     return (

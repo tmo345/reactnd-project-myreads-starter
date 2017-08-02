@@ -6,7 +6,8 @@ import PropTypes from 'prop-types';
 
 class Search extends Component {
   static propTypes = {
-    shelves: PropTypes.array.isRequired
+    shelves: PropTypes.array.isRequired,
+    myBooks: PropTypes.array.isRequired
   }
 
   state = {

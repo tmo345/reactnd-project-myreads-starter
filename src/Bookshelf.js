@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 
 class Bookshelf extends Component {
   static propTypes = {
-    books: PropTypes.array.isRequired,
+    myBooks: PropTypes.array,
     searchResults: PropTypes.array,
     shelfChangeHandler: PropTypes.func.isRequired,
     shelves: PropTypes.array.isRequired
@@ -20,7 +20,6 @@ class Bookshelf extends Component {
                 <Book
                   key={index}
                   resultBook={book}
-                  books={this.props.books}
                   shelfChangeHandler={this.props.shelfChangeHandler}
                   shelves={this.props.shelves}
                   syncResultWithBookShelf={this.props.syncResultWithBookShelf}
@@ -35,11 +34,11 @@ class Bookshelf extends Component {
       return (
         <div className="bookshelf-books">
           <ol className="books-grid">
-            { this.props.books.map((book, index) => {
+            { this.props.myBooks.map((book, index) => {
               return (
                 <Book
                   key={index}
-                  book={book}
+                  myBook={book}
                   shelfChangeHandler={this.props.shelfChangeHandler}
                   shelves={this.props.shelves}
                 />
