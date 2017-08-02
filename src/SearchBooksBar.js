@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types';
+import { Link  } from 'react-router-dom';
 
 class SearchBooksBar extends Component {
   static propTypes = {
@@ -13,7 +14,9 @@ class SearchBooksBar extends Component {
   render() {
     return (
       <div className="search-books-bar">
-        <a href="/" className="close-search">Close</a>
+        <Link to="/"
+          className="close-search"
+        >Close</Link>
         <div className="search-books-input-wrapper">
           <input type="text" onInput={this.handleQueryChange} placeholder="Search by title or author" />
         </div>
