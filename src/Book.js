@@ -3,17 +3,12 @@ import camelCase from 'lodash/camelCase';
 import PropTypes from 'prop-types';
 
 class Book extends Component {
-  state = {
-    resultBookShelf: 'none'
-  }
-
   static propTypes = {
     myBook: PropTypes.object,
     resultBook: PropTypes.object,
     shelfChangeHandler: PropTypes.func.isRequired,
     changeSearchResultShelf: PropTypes.func,
     shelves: PropTypes.array.isRequired,
-    books: PropTypes.array
   }
 
   handleShelfSelection = (e) => {
