@@ -26,9 +26,11 @@ class Search extends Component {
   handleSearch = (newQuery) => {
     if (newQuery.trim() !== '') {
       BooksAPI.search(newQuery, 20)
-        .then((books) => {
+        .then((results) => {
           this.updateQuery(newQuery.trim());
-          this.updateSearchResults(books);
+
+          let syncedResults = this.syncResultsWithBooks(results);
+          this.updateSearchResults(syncedResults);
         }, () => {
           this.updateQuery('');
           this.updateSearchResults([])
@@ -39,6 +41,19 @@ class Search extends Component {
     }
   }
 
+  syncResultsWithBooks = (results) => {
+    let syncedResults = results.map((result) => {
+      let matchingBook = this.props.myBooks.find((myBook) => {
+        return result.id === myBook.id;
+      });
+      if (matchingBook) {
+        return Object.assign({}, result, { shelf: matchingBook.shelf })
+      } else {
+        return result;
+      }
+    });
+    return syncedResults;
+  }
 
   render() {
     return (
