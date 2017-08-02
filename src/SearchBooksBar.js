@@ -1,6 +1,11 @@
 import React, { Component } from 'react'
+import PropTypes from 'prop-types';
 
 class SearchBooksBar extends Component {
+  static propTypes = {
+    handleSearch: PropTypes.func.isRequired
+  }
+
   handleQueryChange = (event) => {
     this.props.handleSearch(event.target.value);
   }

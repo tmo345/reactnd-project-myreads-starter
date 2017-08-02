@@ -2,8 +2,13 @@ import React, { Component } from 'react'
 import SearchBooksBar from './SearchBooksBar.js'
 import Bookshelf from './Bookshelf.js';
 import * as BooksAPI from './BooksAPI.js';
+import PropTypes from 'prop-types';
 
 class Search extends Component {
+  static propTypes = {
+    shelves: PropTypes.array.isRequired
+  }
+
   state = {
     query: '',
     searchResults: []

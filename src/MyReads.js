@@ -1,8 +1,15 @@
 import React, { Component } from 'react'
 import Bookshelf from './Bookshelf.js'
 import camelCase from 'lodash/camelCase';
+import PropTypes from 'prop-types';
 
 class MyReads extends Component {
+  static propTypes = {
+    books: PropTypes.array.isRequired,
+    shelfChangeHandler: PropTypes.func.isRequired,
+    shelves: PropTypes.array.isRequired
+  }
+
   sortBooks(shelf) {
     return this.props.books.filter((book) => {
       return book.shelf === shelf;

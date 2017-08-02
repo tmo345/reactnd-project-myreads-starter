@@ -1,7 +1,13 @@
 import React, { Component } from 'react'
 import camelCase from 'lodash/camelCase';
+import PropTypes from 'prop-types';
 
 class Book extends Component {
+  static propTypes = {
+    book: PropTypes.object.isRequired,
+    shelfChangeHandler: PropTypes.func.isRequired,
+    shelves: PropTypes.array.isRequired
+  }
 
   handleShelfSelection = (e) => {
     this.props.shelfChangeHandler(this.props.book, e.target.value)
