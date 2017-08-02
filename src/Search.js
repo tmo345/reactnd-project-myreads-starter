@@ -30,8 +30,12 @@ class Search extends Component {
         .then((results) => {
           this.updateQuery(newQuery.trim());
 
-          let syncedResults = this.syncResultsWithBooks(results);
-          this.updateSearchResults(syncedResults);
+          if (results.length > 0) {
+            let syncedResults = this.syncResultsWithBooks(results);
+            this.updateSearchResults(syncedResults);
+          } else {
+            this.updateSearchResults([])
+          }
         }, () => {
           this.updateQuery('');
           this.updateSearchResults([])
