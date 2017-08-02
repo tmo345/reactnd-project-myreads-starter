@@ -22,7 +22,7 @@ class Bookshelf extends Component {
                   resultBook={book}
                   shelfChangeHandler={this.props.shelfChangeHandler}
                   shelves={this.props.shelves}
-                  syncResultWithBookShelf={this.props.syncResultWithBookShelf}
+                  changeSearchResultShelf={this.props.changeSearchResultShelf}
                 />
               );
               })

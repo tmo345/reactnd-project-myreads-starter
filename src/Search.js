@@ -56,6 +56,18 @@ class Search extends Component {
     return syncedResults;
   }
 
+  changeSearchResultShelf = (resultBookToChange, shelf) => {
+    this.setState({
+      searchResults: this.state.searchResults.map((searchResult) => {
+        if (searchResult.id === resultBookToChange.id) {
+          return Object.assign({}, searchResult, { shelf });
+        } else {
+          return searchResult;
+        }
+      })
+    })
+  }
+
   render() {
     return (
       <div className="search-books">
@@ -67,7 +79,7 @@ class Search extends Component {
             shelves={this.props.shelves}
             searchResults={this.state.searchResults}
             shelfChangeHandler={this.props.shelfChangeHandler}
-            syncResultWithBookShelf={this.syncResultWithBookShelf}
+            changeSearchResultShelf={this.changeSearchResultShelf}
           />
 
         }

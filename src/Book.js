@@ -11,34 +11,20 @@ class Book extends Component {
     myBook: PropTypes.object,
     resultBook: PropTypes.object,
     shelfChangeHandler: PropTypes.func.isRequired,
+    changeSearchResultShelf: PropTypes.func,
     shelves: PropTypes.array.isRequired,
     books: PropTypes.array
   }
 
   handleShelfSelection = (e) => {
-    let book = this.props.book || this.props.resultBook;
-    this.props.shelfChangeHandler(book, e.target.value);
-    this.setState({
-      resultBookShelf: e.target.value
-    })
-  }
-
-  componentDidMount = () => {
     if (this.props.resultBook) {
-      this.syncResultWithBookShelf(this.props.resultBook)
+      this.props.shelfChangeHandler(this.props.resultBook, e.target.value);
+      this.props.changeSearchResultShelf(this.props.resultBook, e.target.value);
+    } else {
+      this.props.shelfChangeHandler(this.props.myBook, e.target.value);
     }
   }
 
-  syncResultWithBookShelf = (result) => {
-    let matchingBook = this.props.books.filter((book) => {
-      return book.id === result.id
-    })
-    if (matchingBook.length > 0) {
-      this.setState({
-        resultBookShelf: matchingBook[0].shelf
-      })
-    }
-  }
 
   render() {
     let book;
@@ -59,7 +45,7 @@ class Book extends Component {
             }
 
             <div className="book-shelf-changer">
-              <select value={ this.props.resultBook ? this.state.resultBookShelf :book.shelf } onChange={ this.handleShelfSelection }>
+              <select value={ book.shelf } onChange={ this.handleShelfSelection }>
                 <option value="0" disabled>Move to...</option>
                 { this.props.shelves.map((shelf) => {
                 return (
