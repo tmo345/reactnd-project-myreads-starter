@@ -3,18 +3,51 @@ import camelCase from 'lodash/camelCase';
 import PropTypes from 'prop-types';
 
 class Book extends Component {
+  state = {
+    resultBookShelf: 'none'
+  }
+
   static propTypes = {
-    book: PropTypes.object.isRequired,
+    book: PropTypes.object,
+    resultBook: PropTypes.object,
     shelfChangeHandler: PropTypes.func.isRequired,
-    shelves: PropTypes.array.isRequired
+    shelves: PropTypes.array.isRequired,
+    books: PropTypes.array
   }
 
   handleShelfSelection = (e) => {
-    this.props.shelfChangeHandler(this.props.book, e.target.value)
+    let book = this.props.book || this.props.resultBook;
+    this.props.shelfChangeHandler(book, e.target.value);
+    this.setState({
+      resultBookShelf: e.target.value
+    })
+  }
+
+  componentDidMount = () => {
+    if (this.props.resultBook) {
+      this.syncResultWithBookShelf(this.props.resultBook)
+    }
+  }
+
+  syncResultWithBookShelf = (result) => {
+    let matchingBook = this.props.books.filter((book) => {
+      return book.id === result.id
+    })
+    if (matchingBook.length > 0) {
+      this.setState({
+        resultBookShelf: matchingBook[0].shelf
+      })
+    }
   }
 
   render() {
-    const book = this.props.book;
+    let book;
+    if (this.props.resultBook) {
+      book = this.props.resultBook;
+    } else {
+      book = this.props.book;
+    }
+
     return (
       <li>
         <div className="book">
@@ -22,16 +55,16 @@ class Book extends Component {
           <div className="book-top">
 
             { book.imageLinks !== undefined &&
-              <div className="book-cover" style={{ width: 128, height: 193, backgroundImage: `url(${book.imageLinks.smallThumbnail})` }}></div>
+            <div className="book-cover" style={{ width: 128, height: 193, backgroundImage: `url(${book.imageLinks.smallThumbnail})` }}></div>
             }
 
             <div className="book-shelf-changer">
-              <select value={ book.shelf } onChange={ this.handleShelfSelection }>
-                <option value="none" disabled>Move to...</option>
+              <select value={ this.props.resultBook ? this.state.resultBookShelf :book.shelf } onChange={ this.handleShelfSelection }>
+                <option value="0" disabled>Move to...</option>
                 { this.props.shelves.map((shelf) => {
-                  return (
-                    <option key={ shelf } value={ camelCase(shelf) }>{ shelf }</option>
-                  );
+                return (
+                <option key={ shelf } value={ camelCase(shelf) }>{ shelf }</option>
+                );
                 }) }
                 <option value="none">None</option>
               </select>
@@ -41,7 +74,7 @@ class Book extends Component {
 
           <div className='book-title'>{ book.title }</div>
           { book.authors !== undefined &&
-            <div className="book-authors">{ book.authors.join(', ') }</div>
+          <div className="book-authors">{ book.authors.join(', ') }</div>
           }
 
         </div>

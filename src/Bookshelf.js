@@ -11,13 +11,35 @@ class Bookshelf extends Component {
   }
 
   render() {
+    if (this.props.searchResults) {
+      return (
+        <div className="bookshelf-books">
+          <ol className="books-grid">
+            { this.props.searchResults.map((book, index) => {
+              return (
+                <Book
+                  key={index}
+                  resultBook={book}
+                  books={this.props.books}
+                  shelfChangeHandler={this.props.shelfChangeHandler}
+                  shelves={this.props.shelves}
+                  syncResultWithBookShelf={this.props.syncResultWithBookShelf}
+                />
+              );
+              })
+            }
+          </ol>
+        </div>
+      );
+    } else {
       return (
         <div className="bookshelf-books">
           <ol className="books-grid">
             { this.props.books.map((book, index) => {
               return (
                 <Book
-                  key={index} book={book}
+                  key={index}
+                  book={book}
                   shelfChangeHandler={this.props.shelfChangeHandler}
                   shelves={this.props.shelves}
                 />
@@ -27,6 +49,7 @@ class Bookshelf extends Component {
           </ol>
         </div>
       );
+    }
   }
 }
 

@@ -34,6 +34,7 @@ class Search extends Component {
           this.updateSearchResults([])
         })
     } else {
+      // If query is empty, clear results
       this.updateSearchResults([]);
     }
   }
@@ -45,10 +46,17 @@ class Search extends Component {
         <SearchBooksBar handleSearch={this.handleSearch} />
         <div className="search-books-results">
           { this.state.searchResults.length > 0 &&
-            <Bookshelf shelves={this.props.shelves} books={this.state.searchResults} shelfChangeHandler={this.props.shelfChangeHandler}/>
-          }
-        </div>
+          <Bookshelf
+            books={this.props.books}
+            shelves={this.props.shelves}
+            searchResults={this.state.searchResults}
+            shelfChangeHandler={this.props.shelfChangeHandler}
+            syncResultWithBookShelf={this.syncResultWithBookShelf}
+          />
+
+        }
       </div>
+    </div>
     )
   }
 }
