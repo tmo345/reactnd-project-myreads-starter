@@ -16,6 +16,7 @@ class SearchBooksBar extends Component {
       <div className="search-books-bar">
         <Link to="/"
           className="close-search"
+          onClick={this.props.handleCloseSearch}
         >Close</Link>
         <div className="search-books-input-wrapper">
           <input type="text" onInput={this.handleQueryChange} placeholder="Search by title or author" />

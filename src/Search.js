@@ -75,7 +75,10 @@ class Search extends Component {
   render() {
     return (
       <div className="search-books">
-        <SearchBooksBar handleSearch={this.handleSearch} />
+        <SearchBooksBar
+          handleSearch={this.handleSearch}
+          handleCloseSearch={this.props.handleCloseSearch}
+        />
         <div className="search-books-results">
           { this.state.searchResults.length > 0 &&
           <Bookshelf

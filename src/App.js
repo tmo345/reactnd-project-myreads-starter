@@ -22,6 +22,7 @@ class BooksApp extends React.Component {
     });
   }
 
+
   shelfChangeHandler = (bookToChange, shelf) => {
     BooksAPI.update(bookToChange, shelf)
       .then(this.updateBookshelf(bookToChange, shelf));
@@ -64,11 +65,12 @@ class BooksApp extends React.Component {
             shelfChangeHandler={this.shelfChangeHandler}
           />
         )}/>
-        <Route path="/search" render={() => (
+        <Route path="/search" render={({history}) => (
           <Search
             myBooks={this.state.myBooks}
             shelves={this.shelves}
             shelfChangeHandler={this.shelfChangeHandler}
+            handleCloseSearch={(history) => history.push('/')}
           />
         )}/>
       </div>
