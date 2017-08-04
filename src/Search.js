@@ -15,38 +15,85 @@ class Search extends Component {
     searchResults: []
   }
 
+  /**
+   * @description Sets query state
+   * @param {string} newQuery
+   */
   updateQuery = (newQuery) => {
-    this.setState({ query: newQuery.trim() })
+    this.setState({ query: newQuery })
   }
 
+  /**
+   * @description Sets searchResults state
+   * @param {Book[]} results
+   */
   updateSearchResults = (results) => {
     this.setState({ searchResults: results })
   }
 
+  /**
+  * @description Reset state to original emptry string query and empty array searchResults
+  */
+  resetState = () => {
+    this.setState({
+      query: '',
+      searchResults: []
+    })
+  }
 
-  handleSearch = (newQuery) => {
-    if (newQuery.trim() !== '') {
-      BooksAPI.search(newQuery, 20)
-        .then((results) => {
-          this.updateQuery(newQuery.trim());
-
-          if (results.length > 0) {
-            let syncedResults = this.syncResultsWithBooks(results);
-            this.updateSearchResults(syncedResults);
-          } else {
-            this.updateSearchResults([])
-          }
-        }, () => {
-          this.updateQuery('');
-          this.updateSearchResults([])
-        })
+  /**
+  * @description Tests for valid query: non-empty string
+  * @param   {string} query
+  * @returns {Bool} True if valid, False if invalid
+  */
+  isValidQuery = (query) => {
+    if (typeof query !== 'string' || query.trim().length === 0) {
+      return false;
     } else {
-      // If query is empty, clear results
-      this.updateSearchResults([]);
+      return true;
     }
   }
 
-  syncResultsWithBooks = (results) => {
+  /**
+  * @description Check results object for presence of 'error' property, which signifies search
+  * returned 0 results
+  * @param  {Book[] | {error: string, items: Array} } results Books.search API returns either an
+  * array of Book objects or an object with an error property if search does not return Book
+  * results.
+  * @returns {Bool} True if Book results returned | False if no Book results returned
+  */
+  resultsReturned = (results) => {
+    if (results.hasOwnProperty('error')) {
+      return false;
+    } else {
+      return true;
+    }
+  }
+
+  handleSearch = (newQuery) => {
+    if (! this.isValidQuery(newQuery)) {
+      this.resetState();
+      return;
+    } else {
+      var validQuery = newQuery.trim();
+      this.updateQuery(validQuery);
+    }
+
+    BooksAPI.search(validQuery, 20)
+      .then((results) => {
+        if (this.resultsReturned(results)) {
+          let syncedResults = this.syncResultsWithMyBooks(results);
+          this.updateSearchResults(syncedResults);
+        } else {
+          this.resetState();
+        }
+      }, (err) => {
+        this.resetState();
+        console.log(err.message);
+      });
+  }
+
+  syncResultsWithMyBooks = (results) => {
     let syncedResults = results.map((result) => {
       let matchingBook = this.props.myBooks.find((myBook) => {
         return result.id === myBook.id;
