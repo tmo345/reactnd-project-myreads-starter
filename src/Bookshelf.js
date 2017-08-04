@@ -10,6 +10,10 @@ class Bookshelf extends Component {
     shelves: PropTypes.array.isRequired
   }
 
+  /**
+  * @description Render grid of myBooks for main page or a grid of searchResults for search page.
+  * @returns {ReactElement}
+  */
   render() {
     if (this.props.searchResults) {
       return (
@@ -20,8 +24,8 @@ class Bookshelf extends Component {
                 <Book
                   key={index}
                   resultBook={book}
-                  shelfChangeHandler={this.props.shelfChangeHandler}
                   shelves={this.props.shelves}
+                  shelfChangeHandler={this.props.shelfChangeHandler}
                   changeSearchResultShelf={this.props.changeSearchResultShelf}
                 />
               );
@@ -39,8 +43,8 @@ class Bookshelf extends Component {
                 <Book
                   key={index}
                   myBook={book}
-                  shelfChangeHandler={this.props.shelfChangeHandler}
                   shelves={this.props.shelves}
+                  shelfChangeHandler={this.props.shelfChangeHandler}
                 />
               );
               })

@@ -10,51 +10,98 @@ class BooksApp extends React.Component {
     myBooks: []
   }
 
+  /**
+   * Bookshelf categories for use as headings and options in bookshelf changer dropdown menus.
+   */
   shelves = [
     'Currently Reading',
     'Want to Read',
     'Read'
   ];
 
+  /**
+   * @description React lifecycle hook componentDidMount
+   * Ajax call to BooksAPI for all books and then set myBooks state on resolution of
+   * promise
+   */
   componentDidMount = () => {
-    BooksAPI.getAll().then((myBooks) => {
-      this.setState({ myBooks });
+    BooksAPI.getAll()
+      .then(
+        (myBooks) => {
+          this.setState({ myBooks });
+        },
+        (err) => {
+          console.log(err.message);
+        });
+  }
+
+  /**
+   * @description Ajax call to BooksAPI to update the shelf of a book when a new shelf is selected
+   * for that book. On fulfillment of returned promise, the myBooks state is set to  a duplicate
+   * array of Books is created with the updated book and shelf.
+   * @param {Book}   bookToChange
+   * @param {string} shelf
+   */
+  shelfChangeHandler = (bookToChange, shelf) => {
+    BooksAPI.update(bookToChange, shelf)
+      .then(() => {
+        let newMyBooks = this.changeBookshelf(bookToChange, shelf);
+        this.updateMyBooks(newMyBooks);
+      }, (err) => {
+        console.log(err.message);
+      });
+  }
+
+  /**
+   * @description Maps over current myBooks state and returns a new myBooks array with the
+   * bookToChange updated to the newShelf.
+   * @param   {Book}   booktoChange
+   * @param   {string} newShelf
+   * @returns {Book[]} Array of Books
+   */
+  changeBookshelf = (bookToChange, newShelf) => {
+    return this.state.myBooks.map((myBook) => {
+      if (bookToChange.id === myBook.id) {
+        return Object.assign({}, myBook, { shelf: newShelf }) ;
+      } else {
+        return myBook;
+      }
+    })
+  }
+
+  /**
+   * @description Sets myBooks state
+   * @param {Book[]} newMyBooks
+   */
+  updateMyBooks = (newMyBooks) => {
+    this.setState({
+      myBooks: newMyBooks
     });
   }
 
-
-  shelfChangeHandler = (bookToChange, shelf) => {
-    BooksAPI.update(bookToChange, shelf)
-      .then(this.updateBookshelf(bookToChange, shelf));
-    }
-
   /**
-   * @description Map over current state.books. When book.id equals the
-   * bookToChange.id, use object.assign to create a new book object
-   * with the updated shelf. Set the state to the array of books
-   * returned from the map. State now contains the book with the update
-   * shelf and the book will be rerendered in the appropriate shelf.
+   * @description Sets state of myBooks to array of Books with the modified
    *
-   * Modeled after example on page 102 of Fullstack React, Fullstack.io
-   * Accomazzo et al.
-   *
-   * @param {book}   bookToChange
+   * @param {Book}   bookToChange
    * @param {string} shelf
-   * @return undefined
    */
   updateBookshelf = (bookToChange, shelf) => {
     this.setState({
       myBooks: this.state.myBooks.map((myBook) => {
         if (bookToChange.id === myBook.id) {
           return Object.assign({}, myBook, {
-           shelf: shelf
-        }) } else {
-          return myBook;
-        }
+            shelf: shelf
+          }) } else {
+            return myBook;
+          }
       })
     })
   }
 
+  /**
+   * @description Render app routes
+   * @returns {ReactElement}
+   */
   render() {
     return (
       <div className="app">
@@ -64,17 +111,17 @@ class BooksApp extends React.Component {
             myBooks={this.state.myBooks}
             shelfChangeHandler={this.shelfChangeHandler}
           />
-        )}/>
+          )}/>
         <Route path="/search" render={({history}) => (
           <Search
-            myBooks={this.state.myBooks}
             shelves={this.shelves}
+            myBooks={this.state.myBooks}
             shelfChangeHandler={this.shelfChangeHandler}
             handleCloseSearch={(history) => history.push('/')}
           />
-        )}/>
+          )}/>
       </div>
-    )
+      )
   }
 
 }
