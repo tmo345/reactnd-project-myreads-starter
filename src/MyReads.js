@@ -1,5 +1,5 @@
-import React, { Component } from 'react'
-import Bookshelf from './Bookshelf.js'
+import React, { Component } from 'react';
+import Bookshelf from './Bookshelf.js';
 import camelCase from 'lodash/camelCase';
 import PropTypes from 'prop-types';
 import { Link  } from 'react-router-dom';
@@ -11,12 +11,22 @@ class MyReads extends Component {
     shelves: PropTypes.array.isRequired
   }
 
-  sortBooks(shelf) {
+  /**
+   * @description Filter myBooks prop and return subset with the specified shelf
+   * @param   {string} shelf "currentlyReading", "wantToRead", or "read"
+   * @returns {Book[]} array of Books, all belonging to the same shelf
+   */
+  filterBooksByShelf(shelf) {
     return this.props.myBooks.filter((myBook) => {
       return myBook.shelf === shelf;
     })
   }
 
+  /**
+   * @description Render app main page Bookshelf components and button for adding a book which links
+   * to the "/search" route.
+   * @returns {ReactElement}
+   */
   render() {
     return (
       <div className="list-books">
