@@ -118,7 +118,10 @@ class Search extends Component {
   }
 
   /**
-   * @description
+   * @description Sync searchResults and myBooks shelf property. Maps over results and
+   * if a results Book is present in both results and myBooks, that
+   * @param   {Book[]} searchResults
+   * @returns {Book[]} syncedResults
    */
   syncResultsWithMyBooks = (searchResults) => {
     let syncedResults = searchResults.map((searchResult) => {
@@ -154,6 +157,10 @@ class Search extends Component {
     })
   }
 
+  /**
+   * @description Render app routes
+   * @returns {ReactElement}
+   */
   render() {
     return (
       <div className="search-books">
