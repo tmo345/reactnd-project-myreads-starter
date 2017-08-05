@@ -49,6 +49,7 @@ class Search extends Component {
       searchResults: []
     })
   }
+
   /**
    * @description Tests for valid query: non-empty string
    * @param   {string} query
