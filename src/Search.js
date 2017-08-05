@@ -120,15 +120,15 @@ class Search extends Component {
   /**
    * @description
    */
-  syncResultsWithMyBooks = (results) => {
-    let syncedResults = results.map((result) => {
+  syncResultsWithMyBooks = (searchResults) => {
+    let syncedResults = searchResults.map((searchResult) => {
       let matchingBook = this.props.myBooks.find((myBook) => {
-        return result.id === myBook.id;
+        return searchResult.id === myBook.id;
       });
       if (matchingBook) {
-        return Object.assign({}, result, { shelf: matchingBook.shelf })
+        return Object.assign({}, searchResult, { shelf: matchingBook.shelf })
       } else {
-        return result;
+        return searchResult;
       }
     });
     return syncedResults;
