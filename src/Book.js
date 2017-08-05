@@ -14,7 +14,7 @@ class Book extends Component {
   handleShelfSelection = (e) => {
     if (this.props.resultBook) {
       this.props.shelfChangeHandler(this.props.resultBook, e.target.value);
-      this.props.changeSearchResultShelf(this.props.resultBook, e.target.value);
+      this.props.searchResultShelfChangeHandler(this.props.resultBook, e.target.value);
     } else {
       this.props.shelfChangeHandler(this.props.myBook, e.target.value);
     }

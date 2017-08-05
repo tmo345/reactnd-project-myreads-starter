@@ -26,7 +26,7 @@ class Bookshelf extends Component {
                   resultBook={book}
                   shelves={this.props.shelves}
                   shelfChangeHandler={this.props.shelfChangeHandler}
-                  changeSearchResultShelf={this.props.changeSearchResultShelf}
+                  searchResultShelfChangeHandler={this.props.searchResultShelfChangeHandler}
                 />
               );
               })

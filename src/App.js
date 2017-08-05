@@ -37,8 +37,8 @@ class BooksApp extends React.Component {
 
   /**
    * @description Ajax call to BooksAPI to update the shelf of a book when a new shelf is selected
-   * for that book. On fulfillment of returned promise, the myBooks state is set to  a duplicate
-   * array of Books is created with the updated book and shelf.
+   * for that book. On fulfillment of returned promise, the myBooks state is set to a duplicate
+   * array of Books with the updated book and shelf.
    * @param {Book}   bookToChange
    * @param {string} shelf
    */

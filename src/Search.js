@@ -135,8 +135,14 @@ class Search extends Component {
   }
 
 
-
-  changeSearchResultShelf = (resultBookToChange, shelf) => {
+  /**
+   * @description Ajax call to BooksAPI to update the shelf of a book when a new shelf is selected
+   * for that book. On fulfillment of returned promise, the searchResults state is set to a duplicate
+   * array of Books with the updated book and shelf.
+   * @param {Book}   bookToChange
+   * @param {string} shelf
+   */
+  searchResultShelfChangeHandler = (resultBookToChange, shelf) => {
     this.setState({
       searchResults: this.state.searchResults.map((searchResult) => {
         if (searchResult.id === resultBookToChange.id) {
@@ -162,9 +168,8 @@ class Search extends Component {
         shelves={this.props.shelves}
         searchResults={this.state.searchResults}
         shelfChangeHandler={this.props.shelfChangeHandler}
-        changeSearchResultShelf={this.changeSearchResultShelf}
+        searchResultShelfChangeHandler={this.searchResultShelfChangeHandler}
         />
-
       }
       </div>
       </div>
