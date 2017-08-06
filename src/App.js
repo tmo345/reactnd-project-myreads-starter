@@ -1,15 +1,15 @@
-import React from 'react'
-import * as BooksAPI from './BooksAPI'
-import { Route } from 'react-router-dom'
-import './App.css'
-import MyReads from './MyReads.js'
-import Search from './Search.js'
+import React from 'react';
+import * as BooksAPI from './BooksAPI';
+import { Route } from 'react-router-dom';
+import './App.css';
+import MyReads from './MyReads';
+import Search from './Search';
 
 
 export default class BooksApp extends React.Component {
   state ={
     myBooks: []
-  }
+  };
 
   /**
    * Bookshelf categories for use as headings and options in bookshelf changer dropdown menus.
@@ -34,7 +34,7 @@ export default class BooksApp extends React.Component {
         (err) => {
           console.log(err.message);
         });
-  }
+  };
 
   /**
    * @description Ajax call to BooksAPI to update the shelf of a book when a new shelf is selected
@@ -51,7 +51,7 @@ export default class BooksApp extends React.Component {
       }, (err) => {
         console.log(err.message);
       });
-  }
+  };
 
   /**
    * @description Maps over current myBooks state and returns a new myBooks array with the
@@ -68,7 +68,7 @@ export default class BooksApp extends React.Component {
         return myBook;
       }
     })
-  }
+  };
 
   /**
    * @description Sets myBooks state
@@ -78,7 +78,7 @@ export default class BooksApp extends React.Component {
     this.setState({
       myBooks: newMyBooks
     });
-  }
+  };
 
   /**
    * @description Sets state of myBooks to array of Books with the modified
@@ -96,8 +96,8 @@ export default class BooksApp extends React.Component {
             return myBook;
           }
       })
-    })
-  }
+    });
+  };
 
   /**
    * @description Render app routes.
@@ -122,6 +122,6 @@ export default class BooksApp extends React.Component {
           />
           )}/>
       </div>
-      )
-  }
+      );
+  };
 }

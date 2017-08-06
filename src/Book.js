@@ -1,4 +1,4 @@
-import React, { Component } from 'react'
+import React, { Component } from 'react';
 import camelCase from 'lodash/camelCase';
 import PropTypes from 'prop-types';
 
@@ -10,8 +10,7 @@ export default class Book extends Component {
     shelves:                        PropTypes.array.isRequired,
     shelfChangeHandler:             PropTypes.func.isRequired,
     searchResultShelfChangeHandler: PropTypes.func,
-  }
-
+  };
 
   /**
    * @description Handles user selection of shelf for each Book's bookshelf changer. For both
@@ -28,8 +27,7 @@ export default class Book extends Component {
     } else {
       this.props.shelfChangeHandler(this.props.myBook, e.target.value);
     }
-  }
-
+  };
 
   render() {
     let book;
@@ -72,6 +70,6 @@ export default class Book extends Component {
 
         </div>
       </li>
-      )
-  }
+      );
+  };
 }

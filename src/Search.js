@@ -11,28 +11,28 @@ export default class Search extends Component {
     myBooks:            PropTypes.array.isRequired,
     shelfChangeHandler: PropTypes.func.isRequired,
     closeSearchHandler: PropTypes.func.isRequired
-  }
+  };
 
   state = {
     query: '',
     searchResults: []
-  }
+  };
 
   /**
    * @description Sets query state.
    * @param {string} newQuery Search string entered into search input bar.
    */
   updateQuery = (newQuery) => {
-    this.setState({ query: newQuery })
-  }
+    this.setState({ query: newQuery });
+  };
 
   /**
    * @description Sets searchResults state.
    * @param {Book[]} results Array of Books, from a BooksAPI.search call for example.
    */
   updateSearchResults = (results) => {
-    this.setState({ searchResults: results })
-  }
+    this.setState({ searchResults: results });
+  };
 
   /**
    * @description Reset state to original empty query string and empty searchResults array.
@@ -41,9 +41,8 @@ export default class Search extends Component {
     this.setState({
       query: '',
       searchResults: []
-    })
-  }
-
+    });
+  };
 
   /**
    * @description Clear searchResults state to empty array.
@@ -51,37 +50,8 @@ export default class Search extends Component {
   clearSearchResults = () => {
     this.setState({
       searchResults: []
-    })
-  }
-
-  /**
-   * @description Tests for valid query: non-empty string
-   * @param   {string} query
-   * @returns {Bool} True if valid, False if invalid
-   */
-  isValidQuery = (query) => {
-    if (typeof query !== 'string' || query.trim().length === 0) {
-      return false;
-    } else {
-      return true;
-    }
-  }
-
-  /**
-   * @description Check results object for presence of 'error' property, which signifies search
-   * returned 0 results
-   * @param  {Book[] | {error: string, items: Array} } results Books.search API returns either an
-   * array of Book objects or an object with an error property if search does not return Book
-   * results.
-   * @returns {Bool} True if Book results returned | False if no Book results returned
-   */
-  resultsReturned = (results) => {
-    if (results.hasOwnProperty('error')) {
-      return false;
-    } else {
-      return true;
-    }
-  }
+    });
+  };
 
   /**
    * @description Handles searching BooksAPI for books to add to main page bookshelves.
@@ -140,8 +110,7 @@ export default class Search extends Component {
       }
     });
     return syncedResults;
-  }
-
+  };
 
   /**
    * @description On selection of a new shelf for a Book in searchResults, update the searchResults
@@ -158,8 +127,8 @@ export default class Search extends Component {
           return searchResult;
         }
       })
-    })
-  }
+    });
+  };
 
   /**
    * @description Render app routes
@@ -184,6 +153,6 @@ export default class Search extends Component {
       }
       </div>
       </div>
-    )
-  }
+    );
+  };
 }
