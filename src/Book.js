@@ -63,7 +63,10 @@ export default class Book extends Component {
 
           </div>
           {/* Check to avoid undefined property type errors for undefined image properties. */}
+          { book.title !== undefined &&
           <div className='book-title'>{ book.title }</div>
+          }
+
           {/* Check to avoid undefined property type errors for undefined image properties. */}
           { book.authors !== undefined &&
           <div className="book-authors">{ book.authors.join(', ') }</div>
