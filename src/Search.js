@@ -4,6 +4,7 @@ import Bookshelf from './Bookshelf.js';
 import * as BooksAPI from './BooksAPI.js';
 import PropTypes from 'prop-types';
 
+
 export default class Search extends Component {
 
   static propTypes = {
@@ -166,21 +167,21 @@ export default class Search extends Component {
   render() {
     return (
       <div className="search-books">
-      <SearchBooksBar
-      handleSearch={this.handleSearch}
-      handleCloseSearch={this.props.handleCloseSearch}
-      />
-      <div className="search-books-results">
-      { this.state.searchResults.length > 0 &&
-        <Bookshelf
-        books={this.props.books}
-        shelves={this.props.shelves}
-        searchResults={this.state.searchResults}
-        shelfChangeHandler={this.props.shelfChangeHandler}
-        searchResultShelfChangeHandler={this.searchResultShelfChangeHandler}
+        <SearchBooksBar
+          handleSearch={this.handleSearch}
+          closeSearchHandler={this.props.closeSearchHandler}
         />
-      }
-      </div>
+        <div className="search-books-results">
+          { this.state.searchResults.length > 0 &&
+            <Bookshelf
+              books={this.props.books}
+              shelves={this.props.shelves}
+              searchResults={this.state.searchResults}
+              shelfChangeHandler={this.props.shelfChangeHandler}
+              searchResultShelfChangeHandler={this.searchResultShelfChangeHandler}
+            />
+          }
+        </div>
       </div>
     );
   };
