@@ -118,11 +118,10 @@ export default class BooksApp extends React.Component {
             shelves={this.shelves}
             myBooks={this.state.myBooks}
             shelfChangeHandler={this.shelfChangeHandler}
-            handleCloseSearch={(history) => history.push('/')}
+            closeSearchHandler={(history) => history.push('/')}
           />
           )}/>
       </div>
       )
   }
-
 }

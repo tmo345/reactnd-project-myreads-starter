@@ -16,7 +16,7 @@ export default class SearchBooksBar extends Component {
       <div className="search-books-bar">
         <Link to="/"
           className="close-search"
-          onClick={this.props.handleCloseSearch}
+          onClick={this.props.closeSearchHandler}
         >Close</Link>
         <div className="search-books-input-wrapper">
           <input type="text" onInput={this.handleQueryChange} placeholder="Search by title or author" />
