@@ -2,7 +2,8 @@ import React, { Component } from 'react'
 import camelCase from 'lodash/camelCase';
 import PropTypes from 'prop-types';
 
-class Book extends Component {
+
+export default class Book extends Component {
   static propTypes = {
     myBook: PropTypes.object,
     resultBook: PropTypes.object,
@@ -63,5 +64,3 @@ class Book extends Component {
       )
   }
 }
-
-export default Book;

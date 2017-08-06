@@ -4,7 +4,8 @@ import Bookshelf from './Bookshelf.js';
 import * as BooksAPI from './BooksAPI.js';
 import PropTypes from 'prop-types';
 
-class Search extends Component {
+export default class Search extends Component {
+
   static propTypes = {
     shelves: PropTypes.array.isRequired,
     myBooks: PropTypes.array.isRequired
@@ -184,5 +185,3 @@ class Search extends Component {
     )
   }
 }
-
-export default Search;

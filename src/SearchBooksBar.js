@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import PropTypes from 'prop-types';
 import { Link  } from 'react-router-dom';
 
-class SearchBooksBar extends Component {
+export default class SearchBooksBar extends Component {
   static propTypes = {
     handleSearch: PropTypes.func.isRequired
   }
@@ -25,5 +25,3 @@ class SearchBooksBar extends Component {
     )
   }
 }
-
-export default SearchBooksBar;

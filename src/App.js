@@ -5,7 +5,8 @@ import './App.css'
 import MyReads from './MyReads.js'
 import Search from './Search.js'
 
-class BooksApp extends React.Component {
+
+export default class BooksApp extends React.Component {
   state ={
     myBooks: []
   }
@@ -125,5 +126,3 @@ class BooksApp extends React.Component {
   }
 
 }
-
-export default BooksApp

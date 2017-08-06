@@ -4,7 +4,8 @@ import camelCase from 'lodash/camelCase';
 import PropTypes from 'prop-types';
 import { Link  } from 'react-router-dom';
 
-class MyReads extends Component {
+
+export default class MyReads extends Component {
   static propTypes = {
     myBooks: PropTypes.array.isRequired,
     shelfChangeHandler: PropTypes.func.isRequired,
@@ -55,4 +56,3 @@ class MyReads extends Component {
       )
   }
 }
-export default MyReads;
