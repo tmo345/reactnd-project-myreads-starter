@@ -83,8 +83,12 @@ export default class BooksApp extends React.Component {
   };
 
   /**
-   * @description Sets state of myBooks to array of Books with the modified
-   *
+   * @description Sets state of myBooks to array of Books with the modified bookToChange/shelf
+   * Citation: Fullstack React: The Complete Guide for ReactJS and Friends
+   *           Accomazzo et. al. Page 50.
+   * Read about and modeled code for how to map over an array of objects and return a
+   * duplicate array with one modified object that has been created using Object.assign. Since
+   * inital use of technique, variants of this have been used in several places in code base.
    * @param {Book}   bookToChange
    * @param {string} shelf
    */
