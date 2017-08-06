@@ -32,6 +32,7 @@ export default class BooksApp extends React.Component {
           this.setState({ myBooks });
         },
         (err) => {
+          // TODO: Error handling
           console.log(err.message);
         });
   };
@@ -49,6 +50,7 @@ export default class BooksApp extends React.Component {
         let newMyBooks = this.changeBookshelf(bookToChange, shelf);
         this.updateMyBooks(newMyBooks);
       }, (err) => {
+        // TODO: Error handling
         console.log(err.message);
       });
   };
