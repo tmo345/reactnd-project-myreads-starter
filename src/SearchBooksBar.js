@@ -33,6 +33,6 @@ export default class SearchBooksBar extends Component {
           <input type="text" onInput={this.handleQueryChange} placeholder="Search by title or author" />
         </div>
       </div>
-    )
+    );
   }
 }
