@@ -7,8 +7,10 @@ import PropTypes from 'prop-types';
 export default class Search extends Component {
 
   static propTypes = {
-    shelves: PropTypes.array.isRequired,
-    myBooks: PropTypes.array.isRequired
+    shelves:            PropTypes.array.isRequired,
+    myBooks:            PropTypes.array.isRequired,
+    shelfChangeHandler: PropTypes.func.isRequired,
+    closeSearchHandler: PropTypes.func.isRequired
   }
 
   state = {

@@ -4,7 +4,8 @@ import { Link  } from 'react-router-dom';
 
 export default class SearchBooksBar extends Component {
   static propTypes = {
-    handleSearch: PropTypes.func.isRequired
+    handleSearch:       PropTypes.func.isRequired,
+    closeSearchHandler: PropTypes.func.isRequired
   }
 
   handleQueryChange = (event) => {

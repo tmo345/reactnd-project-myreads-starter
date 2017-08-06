@@ -5,11 +5,11 @@ import PropTypes from 'prop-types';
 
 export default class Book extends Component {
   static propTypes = {
-    myBook: PropTypes.object,
-    resultBook: PropTypes.object,
-    shelfChangeHandler: PropTypes.func.isRequired,
-    changeSearchResultShelf: PropTypes.func,
-    shelves: PropTypes.array.isRequired,
+    myBook:                         PropTypes.object,
+    resultBook:                     PropTypes.object,
+    shelves:                        PropTypes.array.isRequired,
+    shelfChangeHandler:             PropTypes.func.isRequired,
+    searchResultShelfChangeHandler: PropTypes.func,
   }
 
 

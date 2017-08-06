@@ -5,10 +5,10 @@ import PropTypes from 'prop-types';
 
 export default class Bookshelf extends Component {
   static propTypes = {
-    myBooks: PropTypes.array,
-    searchResults: PropTypes.array,
+    myBooks:            PropTypes.array,
+    searchResults:      PropTypes.array,
+    shelves:            PropTypes.array.isRequired,
     shelfChangeHandler: PropTypes.func.isRequired,
-    shelves: PropTypes.array.isRequired
   }
 
   /**

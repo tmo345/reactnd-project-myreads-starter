@@ -7,9 +7,9 @@ import { Link  } from 'react-router-dom';
 
 export default class MyReads extends Component {
   static propTypes = {
-    myBooks: PropTypes.array.isRequired,
-    shelfChangeHandler: PropTypes.func.isRequired,
-    shelves: PropTypes.array.isRequired
+    myBooks:            PropTypes.array.isRequired,
+    shelves:            PropTypes.array.isRequired,
+    shelfChangeHandler: PropTypes.func.isRequired
   }
 
   /**
