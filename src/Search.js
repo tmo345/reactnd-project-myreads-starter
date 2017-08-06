@@ -93,8 +93,37 @@ export default class Search extends Component {
   }
 
   /**
-   * @description Sync searchResults and myBooks shelf property. Maps over results and
-   * if a results Book is present in both results and myBooks, that
+   * @description Tests for valid query, which should be a non-empty string.
+   * @param   {string} query Search string entered into search input bar.
+   * @returns {Bool}         True if valid, False if invalid
+   */
+  isValidQuery = (query) => {
+    if (typeof query !== 'string' || query.trim().length === 0) {
+      return false;
+    } else {
+      return true;
+    }
+  };
+
+  /**
+   * @description Check for presence of error property on results parameter. If the BooksAPI.search
+   * call does not return any Books, it instead returns an object { error: "empty query", items:
+   * []}. The presence of the error property on results indicates that no Book results returned.
+   * @param   {Book[] | {error: string, items: Array}} results
+   * @returns {Bool} True if Book results returned | False if no Book results returned
+   */
+  resultsReturned = (results) => {
+    if (results.hasOwnProperty('error')) {
+      return false;
+    } else {
+      return true;
+    }
+  };
+
+  /**
+   * @description Sync searchResults Book.shelf properties with any matching Books in myBooks.
+   * This is done prior to setting searchResults state to ensure that books on the main page and
+   * the search page have the same bookshelf state.
    * @param   {Book[]} searchResults
    * @returns {Book[]} syncedResults
    */
