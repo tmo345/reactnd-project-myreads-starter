@@ -172,7 +172,7 @@ export default class Search extends Component {
           closeSearchHandler={this.props.closeSearchHandler}
         />
         <div className="search-books-results">
-          { this.state.searchResults.length > 0 &&
+          {this.state.searchResults.length > 0 &&
             <Bookshelf
               books={this.props.books}
               shelves={this.props.shelves}

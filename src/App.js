@@ -94,9 +94,10 @@ export default class BooksApp extends React.Component {
         if (bookToChange.id === myBook.id) {
           return Object.assign({}, myBook, {
             shelf: shelf
-          }) } else {
-            return myBook;
-          }
+          });
+        } else {
+          return myBook;
+        }
       })
     });
   };
@@ -124,6 +125,6 @@ export default class BooksApp extends React.Component {
           />
           )}/>
       </div>
-      );
+    );
   };
 }

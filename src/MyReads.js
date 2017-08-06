@@ -37,15 +37,15 @@ export default class MyReads extends Component {
         <div className="list-books-content">
           { this.props.shelves.map((shelf) => {
             return (
-            <div key={shelf} className="bookshelf">
-              <h2 className="bookshelf-title">{shelf}</h2>
-              <Bookshelf
-                shelves={ this.props.shelves }
-                myBooks={ this.filterBooksByShelf(camelCase(shelf)) }
-                shelfChangeHandler={ this.props.shelfChangeHandler }
-              />
-            </div>
-            )
+              <div key={shelf} className="bookshelf">
+                <h2 className="bookshelf-title">{shelf}</h2>
+                <Bookshelf
+                  shelves={ this.props.shelves }
+                  myBooks={ this.filterBooksByShelf(camelCase(shelf)) }
+                  shelfChangeHandler={ this.props.shelfChangeHandler }
+                />
+              </div>
+            );
           })}
 
         </div>

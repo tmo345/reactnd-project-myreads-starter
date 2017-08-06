@@ -46,16 +46,16 @@ export default class Book extends Component {
           <div className="book-top">
             {/* Check to avoid undefined property type errors for undefined image properties. */}
             { book.imageLinks !== undefined &&
-            <div className="book-cover" style={{ width: 128, height: 193, backgroundImage: `url(${book.imageLinks.smallThumbnail})` }}></div>
+              <div className="book-cover" style={{ width: 128, height: 193, backgroundImage: `url(${book.imageLinks.smallThumbnail})` }}></div>
             }
 
             <div className="book-shelf-changer">
               <select value={ book.shelf } onChange={ this.handleShelfSelection }>
                 <option value="0" disabled>Move to...</option>
                 { this.props.shelves.map((shelf) => {
-                return (
-                <option key={ shelf } value={ camelCase(shelf) }>{ shelf }</option>
-                );
+                  return (
+                    <option key={ shelf } value={ camelCase(shelf) }>{ shelf }</option>
+                  );
                 }) }
                 <option value="none">None</option>
               </select>
@@ -64,16 +64,16 @@ export default class Book extends Component {
           </div>
           {/* Check to avoid undefined property type errors for undefined image properties. */}
           { book.title !== undefined &&
-          <div className='book-title'>{ book.title }</div>
+            <div className='book-title'>{ book.title }</div>
           }
 
           {/* Check to avoid undefined property type errors for undefined image properties. */}
           { book.authors !== undefined &&
-          <div className="book-authors">{ book.authors.join(', ') }</div>
+            <div className="book-authors">{ book.authors.join(', ') }</div>
           }
 
         </div>
       </li>
-      );
+    );
   };
 }
