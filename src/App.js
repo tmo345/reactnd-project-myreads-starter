@@ -58,7 +58,7 @@ export default class BooksApp extends React.Component {
    * bookToChange updated to the newShelf.
    * @param   {Book}   booktoChange
    * @param   {string} newShelf
-   * @returns {Book[]} Array of Books
+   * @returns {Book[]}
    */
   changeBookshelf = (bookToChange, newShelf) => {
     return this.state.myBooks.map((myBook) => {
@@ -100,7 +100,7 @@ export default class BooksApp extends React.Component {
   }
 
   /**
-   * @description Render app routes
+   * @description Render app routes.
    * @returns {ReactElement}
    */
   render() {

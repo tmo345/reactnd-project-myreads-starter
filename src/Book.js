@@ -12,7 +12,16 @@ export default class Book extends Component {
     shelves: PropTypes.array.isRequired,
   }
 
-  handleShelfSelection = (e) => {
+
+  /**
+   * @description Handles user selection of shelf for each Book's bookshelf changer. For both
+   * resultBooks and myBooks, shelfChangeHandler is called to handle updating the book's shelf
+   * on the server and to update the myBooks state to reflect the change. For resultBooks,
+   * searchResultShelfChangeHandler is also called to handle updating the searchResults state
+   * to reflect the change.
+   * @param {change Event} event
+   */
+  handleShelfSelection = (event) => {
     if (this.props.resultBook) {
       this.props.shelfChangeHandler(this.props.resultBook, e.target.value);
       this.props.searchResultShelfChangeHandler(this.props.resultBook, e.target.value);
@@ -24,6 +33,8 @@ export default class Book extends Component {
 
   render() {
     let book;
+    // Set book to either the resultBook or myBook for convenience of avoiding several conditionals
+    // in the jsx below.
     if (this.props.resultBook) {
       book = this.props.resultBook;
     } else {

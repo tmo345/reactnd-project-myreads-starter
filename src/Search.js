@@ -17,23 +17,23 @@ export default class Search extends Component {
   }
 
   /**
-   * @description Sets query state
-   * @param {string} newQuery
+   * @description Sets query state.
+   * @param {string} newQuery Search string entered into search input bar.
    */
   updateQuery = (newQuery) => {
     this.setState({ query: newQuery })
   }
 
   /**
-   * @description Sets searchResults state
-   * @param {Book[]} results
+   * @description Sets searchResults state.
+   * @param {Book[]} results Array of Books, from a BooksAPI.search call for example.
    */
   updateSearchResults = (results) => {
     this.setState({ searchResults: results })
   }
 
   /**
-   * @description Reset state to original emptry string query and empty array searchResults
+   * @description Reset state to original empty query string and empty searchResults array.
    */
   resetState = () => {
     this.setState({
@@ -42,8 +42,9 @@ export default class Search extends Component {
     })
   }
 
+
   /**
-   * @description Clear searchResults state
+   * @description Clear searchResults state to empty array.
    */
   clearSearchResults = () => {
     this.setState({
@@ -83,7 +84,7 @@ export default class Search extends Component {
   /**
    * @description Handles searching BooksAPI for books to add to main page bookshelves.
    *
-   * (For project, only queries in SEARCH_TERMS.md return results.) If query validates,
+   * For project, only queries in SEARCH_TERMS.md return results. If query validates,
    * query state is updated and sent with ajax call BooksAPI.search. A promise is
    * returned.
    *   On fulfillment:
@@ -94,7 +95,7 @@ export default class Search extends Component {
    *   On rejection:
    *    - Reset query and searchResults state
    *
-   * @param   {string} newQuery
+   * @param   {string} newQuery Search string input to search input bar.
    */
   handleSearch = (newQuery) => {
     if (! this.isValidQuery(newQuery)) {
@@ -141,11 +142,10 @@ export default class Search extends Component {
 
 
   /**
-   * @description Ajax call to BooksAPI to update the shelf of a book when a new shelf is selected
-   * for that book. On fulfillment of returned promise, the searchResults state is set to a duplicate
-   * array of Books with the updated book and shelf.
-   * @param {Book}   bookToChange
-   * @param {string} shelf
+   * @description On selection of a new shelf for a Book in searchResults, update the searchResults
+   * state to reflect change to new shelf.
+   * @param {Book}   resultBookToChange Book on results page whose shelf will be changed.
+   * @param {string} shelf              The new shelf for resultBookToChange.
    */
   searchResultShelfChangeHandler = (resultBookToChange, shelf) => {
     this.setState({
