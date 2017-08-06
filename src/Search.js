@@ -151,7 +151,7 @@ export default class Search extends Component {
     this.setState({
       searchResults: this.state.searchResults.map((searchResult) => {
         if (searchResult.id === resultBookToChange.id) {
-          return Object.assign({}, searchResult, { shelf });
+          return Object.assign({}, searchResult, { shelf: shelf });
         } else {
           return searchResult;
         }
