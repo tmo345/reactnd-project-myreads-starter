@@ -24,8 +24,8 @@ export default class MyReads extends Component {
   }
 
   /**
-   * @description Render app main page Bookshelf components and button for adding a book which links
-   * to the "/search" route.
+   * @description Renders My Read page elements: Bookshelf components and button for adding a book
+   * which links to the "/search" route.
    * @returns {ReactElement}
    */
   render() {

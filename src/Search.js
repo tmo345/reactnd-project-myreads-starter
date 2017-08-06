@@ -161,7 +161,8 @@ export default class Search extends Component {
   };
 
   /**
-   * @description Render app routes
+   * @description Renders search page elements: SearchBookBar for search query entry and Bookshelf for
+   * display of search results.
    * @returns {ReactElement}
    */
   render() {

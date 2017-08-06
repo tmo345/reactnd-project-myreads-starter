@@ -29,6 +29,10 @@ export default class Book extends Component {
     }
   };
 
+  /**
+   * @description Render Book component (on both My Reads page and Search Page)
+   * @returns {ReactElement}
+   */
   render() {
     let book;
     // Set book to either the resultBook or myBook for convenience of avoiding several conditionals

@@ -8,10 +8,20 @@ export default class SearchBooksBar extends Component {
     closeSearchHandler: PropTypes.func.isRequired
   }
 
+  /**
+   * @description Handles onInput event for search books bar input element. The input represents a
+   * user search query. handleSearch is called with value of query to initiate search of BooksAPI
+   * and state management by Search component.
+   * @param {input Event} event
+   */
   handleQueryChange = (event) => {
     this.props.handleSearch(event.target.value);
   }
 
+  /**
+  * @description Renders input for search query entry and Link back to My Reads page.
+  * @returns {ReactElement}
+  */
   render() {
     return (
       <div className="search-books-bar">
