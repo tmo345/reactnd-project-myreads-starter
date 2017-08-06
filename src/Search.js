@@ -1,5 +1,5 @@
-import React, { Component } from 'react'
-import SearchBooksBar from './SearchBooksBar.js'
+import React, { Component } from 'react';
+import SearchBooksBar from './SearchBooksBar.js';
 import Bookshelf from './Bookshelf.js';
 import * as BooksAPI from './BooksAPI.js';
 import PropTypes from 'prop-types';
