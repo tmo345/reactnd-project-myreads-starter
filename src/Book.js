@@ -22,10 +22,10 @@ export default class Book extends Component {
    */
   handleShelfSelection = (event) => {
     if (this.props.resultBook) {
-      this.props.shelfChangeHandler(this.props.resultBook, e.target.value);
-      this.props.searchResultShelfChangeHandler(this.props.resultBook, e.target.value);
+      this.props.shelfChangeHandler(this.props.resultBook, event.target.value);
+      this.props.searchResultShelfChangeHandler(this.props.resultBook, event.target.value);
     } else {
-      this.props.shelfChangeHandler(this.props.myBook, e.target.value);
+      this.props.shelfChangeHandler(this.props.myBook, event.target.value);
     }
   };
 
