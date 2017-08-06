@@ -21,11 +21,9 @@ $ npm start
 The app should automatically launch in a new tab in your default browser or it can be found by default at [localhost:3000](http://localhost:3000).
 
 ### Tips
-- If you wish to use another port besides the react-scripts default 3000, for the app, edit [package.json](./package.json) scripts and add a PORT env variable to the "start" script. Note: this works for Mac and Linux. 
+- If you wish to use another port besides the react-scripts default 3000, for the app, edit [package.json](./package.json) scripts and add a PORT env variable to the "start" script. Note: this works for Mac and Linux.
   - Source: [riceyeh](https://github.com/riceyeh)'s answer to create-react-app [#1083](https://github.com/facebookincubator/create-react-app/issues/1083).
 ```json
 "scripts": {
   "start": "PORT=YOUR_PORT_HERE react-scripts start",
-  ...
-}
 ```
