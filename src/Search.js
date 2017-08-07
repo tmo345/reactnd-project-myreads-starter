@@ -136,7 +136,7 @@ export default class Search extends Component {
       if (matchingBook) {
         return Object.assign({}, searchResult, { shelf: matchingBook.shelf })
       } else {
-        return searchResult;
+        return Object.assign({}, searchResult, { shelf: 'none' });
       }
     });
     return syncedResults;
