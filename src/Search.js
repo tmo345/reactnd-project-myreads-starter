@@ -124,7 +124,8 @@ export default class Search extends Component {
   /**
    * @description Sync searchResults Book.shelf properties with any matching Books in myBooks.
    * This is done prior to setting searchResults state to ensure that books on the main page and
-   * the search page have the same bookshelf state.
+   * the search page have the same bookshelf state. Any result books that do not have a shelf, are
+   * set to have a shelf of 'none'.
    * @param   {Book[]} searchResults
    * @returns {Book[]} syncedResults
    */
